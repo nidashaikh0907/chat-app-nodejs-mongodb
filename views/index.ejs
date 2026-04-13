@@ -1,0 +1,50 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Chat App</title>
+            <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+             <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+             <link rel="stylesheet" href="/style.css">
+        </head>
+        <body>  
+            <b><h3>Chat Messages</h3></b>
+            <form method="GET" action="/chats/new">
+                <button>New Message</button>
+            </form>
+            
+        <% for(let chat of chats){ %>
+            <div class="chat">
+       <div class="user">
+        <div class="avatar"><%= chat.from[0].toUpperCase() %></div>
+        <b><%= chat.from %></b>
+    </div>
+        <div class="chat">
+        <div class="msg <%= chat.from === 'nida' ? 'sent' : 'received' %>">
+            <p><%=chat.msg %></p>
+            <span class="time"><%= chat.created_at.toString().split(" ")[4] %></span>
+            </div>
+        </div>
+            <form method="GET" action="/chats/<%= chat._id %>/edit">
+                <button>Edit Message</button>
+            </form>
+            <br>
+            <form method="POST" action="/chats/<%= chat._id %>?_method=DELETE"
+                onsubmit="return confirm('Are you sure you want to delete this message?')" > 
+                <button>Delete Message</button>
+        </form>
+        </div>
+        <div class="receiver">To: <%= chat.to %></div>
+        <hr>
+        <p><%= chat.created_at.toString().split(" ")[4] %></p>
+        <p><%= chat.created_at.toString().split(" ").slice(0,4).join("-") %></p>
+        </div>
+        
+        <br><br>
+        <% } %>
+        >
+
+        </body>
+        </html>
+

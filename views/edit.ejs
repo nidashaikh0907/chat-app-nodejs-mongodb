@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Message</title>
+     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <p>Edit Message From Id: <%= chat._id %></p>
+    <p>
+        This Chat was sent by <b><%= chat.from %></b> to <b><%= chat.to %></b>
+        </p>
+    <form method="POST" action="/chats/<%= chat._id %>?_method=PUT">
+        <textarea name="msg" rows="6" cols="50"><%= chat.msg %></textarea>
+    <br>
+    <button class="btn">Edit Message</button>
+    </form>
+</body>
+</html>
